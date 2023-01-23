@@ -1,12 +1,14 @@
-import { Quest } from '../../@types/quest-types';
+import { Link } from 'react-router-dom';
+import { QuestPreview } from '../../@types/quest-types';
+import { AppRoute } from '../../const/app-route';
 import { capitalizeFirstLetter } from '../../utiles/format';
 
 type QuestCardProps = {
-  quest: Quest;
+  quest: QuestPreview;
 }
 
 function QuestCard({quest}: QuestCardProps): JSX.Element {
-  const {title, previewImg, previewImgWebp, level, peopleMinMax} = quest;
+  const {id, title, previewImg, previewImgWebp, level, peopleMinMax} = quest;
 
   return (
     <div className="quest-card">
@@ -27,9 +29,9 @@ function QuestCard({quest}: QuestCardProps): JSX.Element {
       </div>
       <div className="quest-card__content">
         <div className="quest-card__info-wrapper">
-          <a className="quest-card__link" href="quest.html">
+          <Link className="quest-card__link" to={`${AppRoute.Quest}/${id}`}>
             {capitalizeFirstLetter(title)}
-          </a>
+          </Link>
         </div>
         <ul className="tags quest-card__tags">
           <li className="tags__item">

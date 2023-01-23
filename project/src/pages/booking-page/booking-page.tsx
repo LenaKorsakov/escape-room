@@ -1,6 +1,7 @@
 import Header from '../../components/header/header';
 
 function BookingPage():JSX.Element {
+
   return (
     <>
       <Header />
@@ -9,7 +10,7 @@ function BookingPage():JSX.Element {
           <picture>
             <source
               type="image/webp"
-              srcSet="img/content/maniac/maniac-bg-size-m.webp, img/content/maniac/maniac-bg-size-m@2x.webp 2x"
+              srcSet="/img/content/maniac/maniac-bg-size-m.webp, img/content/maniac/maniac-bg-size-m@2x.webp 2x"
             />
             <img
               src="img/content/maniac/maniac-bg-size-m.jpg"
@@ -239,7 +240,7 @@ function BookingPage():JSX.Element {
               </span>
               <span className="custom-checkbox__label">
               Я&nbsp;согласен с
-                <a className="link link--active-silver link--underlined" href="#">
+                <a className="link link--active-silver link--underlined" href="/">
                 правилами обработки персональных данных
                 </a>
               &nbsp;и пользовательским соглашением

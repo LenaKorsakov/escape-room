@@ -1,10 +1,10 @@
-import { Quest } from '../../@types/quest-types';
+import { QuestPreview} from '../../@types/quest-types';
 import Filter from '../../components/filter/filter';
 import Header from '../../components/header/header';
 import QuestCard from '../../components/quest-card/quest-card';
 
 type MainPageProps = {
-  quests: Quest[];
+  quests: QuestPreview[];
 }
 function MainPage({quests}: MainPageProps):JSX.Element {
   return (

@@ -1,8 +1,8 @@
-import { Quest } from '../@types/quest-types';
+import { QuestsList } from '../@types/quest-types';
 import { QuestLevel } from '../const/quest-level';
 import { QuestType } from '../const/quest-type';
 
-export const quests: Quest[] = [
+export const quests: QuestsList = [
   {
     id: 1,
     title: 'Склеп',
@@ -10,7 +10,10 @@ export const quests: Quest[] = [
     previewImgWebp: 'img/content/crypt/crypt-size-s.webp',
     level: QuestLevel.Hard,
     type: QuestType.Horror,
-    peopleMinMax: [2, 15]
+    peopleMinMax: [2, 15],
+    description: 'Средневековое кладбище таит в себе много страшных тайн. Местные жители говорят, что в склепе похоронен граф вампир, который по ночам выходит на охоту, чтобы испить человеческой крови. Через час солнце опустится за горизонт, успеете ли вы убить вампира и выбраться из склепа?',
+    coverImg:'img/content/maniac/maniac-size-m.jpg',
+    coverImgWebp: 'img/content/maniac/maniac-size-m.webp'
   },
   {
     id: 2,
@@ -19,7 +22,10 @@ export const quests: Quest[] = [
     previewImgWebp: 'img/content/maniac/maniac-size-s.webp',
     level: QuestLevel.Hard,
     type: QuestType.Mystic,
-    peopleMinMax: [3, 5]
+    peopleMinMax: [3, 5],
+    description: 'Средневековое кладбище таит в себе много страшных тайн. Местные жители говорят, что в склепе похоронен граф вампир, который по ночам выходит на охоту, чтобы испить человеческой крови. Через час солнце опустится за горизонт, успеете ли вы убить вампира и выбраться из склепа?',
+    coverImg:'img/content/maniac/maniac-size-m.jpg',
+    coverImgWebp: 'img/content/maniac/maniac-size-m.webp'
   },
   {
     id: 3,
@@ -28,7 +34,10 @@ export const quests: Quest[] = [
     previewImgWebp: 'img/content/ritual/ritual-size-s.webp',
     level: QuestLevel.Medium,
     type: QuestType.SciFi,
-    peopleMinMax: [5, 10]
+    peopleMinMax: [5, 10],
+    description: 'Средневековое кладбище таит в себе много страшных тайн. Местные жители говорят, что в склепе похоронен граф вампир, который по ночам выходит на охоту, чтобы испить человеческой крови. Через час солнце опустится за горизонт, успеете ли вы убить вампира и выбраться из склепа?',
+    coverImg:'img/content/maniac/maniac-size-m.jpg',
+    coverImgWebp: 'img/content/maniac/maniac-size-m.webp'
   },
   {
     id: 4,
@@ -37,7 +46,10 @@ export const quests: Quest[] = [
     previewImgWebp: 'img/content/crypt/crypt-size-s.webp',
     level: QuestLevel.Hard,
     type: QuestType.Horror,
-    peopleMinMax: [2, 15]
+    peopleMinMax: [2, 15],
+    description: 'Средневековое кладбище таит в себе много страшных тайн. Местные жители говорят, что в склепе похоронен граф вампир, который по ночам выходит на охоту, чтобы испить человеческой крови. Через час солнце опустится за горизонт, успеете ли вы убить вампира и выбраться из склепа?',
+    coverImg:'img/content/maniac/maniac-size-m.jpg',
+    coverImgWebp: 'img/content/maniac/maniac-size-m.webp'
   },
   {
     id: 5,
@@ -46,7 +58,10 @@ export const quests: Quest[] = [
     previewImgWebp: 'img/content/maniac/maniac-size-s.webp',
     level: QuestLevel.Hard,
     type: QuestType.Mystic,
-    peopleMinMax: [3, 5]
+    peopleMinMax: [3, 5],
+    description: 'Средневековое кладбище таит в себе много страшных тайн. Местные жители говорят, что в склепе похоронен граф вампир, который по ночам выходит на охоту, чтобы испить человеческой крови. Через час солнце опустится за горизонт, успеете ли вы убить вампира и выбраться из склепа?',
+    coverImg:'img/content/maniac/maniac-size-m.jpg',
+    coverImgWebp: 'img/content/maniac/maniac-size-m.webp'
   },
   {
     id: 6,
@@ -55,7 +70,10 @@ export const quests: Quest[] = [
     previewImgWebp: 'img/content/ritual/ritual-size-s.webp',
     level: QuestLevel.Medium,
     type: QuestType.SciFi,
-    peopleMinMax: [5, 10]
+    peopleMinMax: [5, 10],
+    description: 'Средневековое кладбище таит в себе много страшных тайн. Местные жители говорят, что в склепе похоронен граф вампир, который по ночам выходит на охоту, чтобы испить человеческой крови. Через час солнце опустится за горизонт, успеете ли вы убить вампира и выбраться из склепа?',
+    coverImg:'img/content/maniac/maniac-size-m.jpg',
+    coverImgWebp: 'img/content/maniac/maniac-size-m.webp'
   },
   {
     id: 7,
@@ -64,7 +82,10 @@ export const quests: Quest[] = [
     previewImgWebp: 'img/content/crypt/crypt-size-s.webp',
     level: QuestLevel.Hard,
     type: QuestType.Horror,
-    peopleMinMax: [2, 15]
+    peopleMinMax: [2, 15],
+    description: 'Средневековое кладбище таит в себе много страшных тайн. Местные жители говорят, что в склепе похоронен граф вампир, который по ночам выходит на охоту, чтобы испить человеческой крови. Через час солнце опустится за горизонт, успеете ли вы убить вампира и выбраться из склепа?',
+    coverImg:'img/content/maniac/maniac-size-m.jpg',
+    coverImgWebp: 'img/content/maniac/maniac-size-m.webp'
   },
   {
     id: 8,
@@ -73,7 +94,10 @@ export const quests: Quest[] = [
     previewImgWebp: 'img/content/maniac/maniac-size-s.webp',
     level: QuestLevel.Hard,
     type: QuestType.Mystic,
-    peopleMinMax: [3, 5]
+    peopleMinMax: [3, 5],
+    description: 'Средневековое кладбище таит в себе много страшных тайн. Местные жители говорят, что в склепе похоронен граф вампир, который по ночам выходит на охоту, чтобы испить человеческой крови. Через час солнце опустится за горизонт, успеете ли вы убить вампира и выбраться из склепа?',
+    coverImg:'img/content/maniac/maniac-size-m.jpg',
+    coverImgWebp: 'img/content/maniac/maniac-size-m.webp'
   },
   {
     id: 9,
@@ -82,7 +106,10 @@ export const quests: Quest[] = [
     previewImgWebp: 'img/content/ritual/ritual-size-s.webp',
     level: QuestLevel.Medium,
     type: QuestType.SciFi,
-    peopleMinMax: [5, 10]
+    peopleMinMax: [5, 10],
+    description: 'Средневековое кладбище таит в себе много страшных тайн. Местные жители говорят, что в склепе похоронен граф вампир, который по ночам выходит на охоту, чтобы испить человеческой крови. Через час солнце опустится за горизонт, успеете ли вы убить вампира и выбраться из склепа?',
+    coverImg:'img/content/maniac/maniac-size-m.jpg',
+    coverImgWebp: 'img/content/maniac/maniac-size-m.webp'
   },
   {
     id: 10,
@@ -91,7 +118,10 @@ export const quests: Quest[] = [
     previewImgWebp: 'img/content/crypt/crypt-size-s.webp',
     level: QuestLevel.Hard,
     type: QuestType.Horror,
-    peopleMinMax: [2, 15]
+    peopleMinMax: [2, 15],
+    description: 'Средневековое кладбище таит в себе много страшных тайн. Местные жители говорят, что в склепе похоронен граф вампир, который по ночам выходит на охоту, чтобы испить человеческой крови. Через час солнце опустится за горизонт, успеете ли вы убить вампира и выбраться из склепа?',
+    coverImg:'img/content/maniac/maniac-size-m.jpg',
+    coverImgWebp: 'img/content/maniac/maniac-size-m.webp'
   },
   {
     id: 11,
@@ -100,7 +130,10 @@ export const quests: Quest[] = [
     previewImgWebp: 'img/content/maniac/maniac-size-s.webp',
     level: QuestLevel.Hard,
     type: QuestType.Mystic,
-    peopleMinMax: [3, 5]
+    peopleMinMax: [3, 5],
+    description: 'Средневековое кладбище таит в себе много страшных тайн. Местные жители говорят, что в склепе похоронен граф вампир, который по ночам выходит на охоту, чтобы испить человеческой крови. Через час солнце опустится за горизонт, успеете ли вы убить вампира и выбраться из склепа?',
+    coverImg:'img/content/maniac/maniac-size-m.jpg',
+    coverImgWebp: 'img/content/maniac/maniac-size-m.webp'
   },
   {
     id: 12,
@@ -109,6 +142,9 @@ export const quests: Quest[] = [
     previewImgWebp: 'img/content/ritual/ritual-size-s.webp',
     level: QuestLevel.Medium,
     type: QuestType.SciFi,
-    peopleMinMax: [5, 10]
+    peopleMinMax: [5, 10],
+    description: 'Средневековое кладбище таит в себе много страшных тайн. Местные жители говорят, что в склепе похоронен граф вампир, который по ночам выходит на охоту, чтобы испить человеческой крови. Через час солнце опустится за горизонт, успеете ли вы убить вампира и выбраться из склепа?',
+    coverImg:'img/content/maniac/maniac-size-m.jpg',
+    coverImgWebp: 'img/content/maniac/maniac-size-m.webp'
   },
 ];

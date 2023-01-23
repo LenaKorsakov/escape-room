@@ -1,5 +1,5 @@
-import { QuestLevel } from '../const/quest-level';
 import { QuestType } from '../const/quest-type';
+import { QuestLevel } from '../const/quest-level';
 
 export type Quest = {
 id: number;
@@ -9,4 +9,11 @@ previewImgWebp: string;
 level: QuestLevel;
 type: QuestType;
 peopleMinMax: [number, number];
+description: string;
+coverImg: string;
+coverImgWebp: string;
 }
+
+export type QuestsList = Quest[];
+
+export type QuestPreview = Pick<Quest, 'id'|'title'|'previewImg'|'previewImgWebp'|'level'|'peopleMinMax'>;
