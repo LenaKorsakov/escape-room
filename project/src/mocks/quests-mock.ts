@@ -1,8 +1,8 @@
-import { QuestsList } from '../@types/quest-types';
+import { Quest } from '../@types/quest-types';
 import { QuestLevel } from '../const/quest-level';
 import { QuestType } from '../const/quest-type';
 
-export const quests: QuestsList = [
+export const quests: Quest[] = [
   {
     id: 1,
     title: 'Склеп',

@@ -14,6 +14,4 @@ coverImg: string;
 coverImgWebp: string;
 }
 
-export type QuestsList = Quest[];
-
 export type QuestPreview = Pick<Quest, 'id'|'title'|'previewImg'|'previewImgWebp'|'level'|'peopleMinMax'>;
