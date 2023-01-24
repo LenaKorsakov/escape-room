@@ -8,7 +8,7 @@ export const Action = {
   FetchUserReservations: 'reservation/fetchUserReservations',
   DeleteReservationById: 'reservation/deleteReservationById',
 
-  SetAuthorizationStatus: 'user/setAuthorizationStatus',
+  CheckAuthorizationStatus: 'user/checkAuthorizationStatus',
   UserLogIn: 'user/login',
   UserLogOut: 'user/logout',
 } as const;

@@ -1,4 +1,6 @@
+import { AuthorizationStatus } from '../const/authorization-status';
 import { store } from '../store/index';
+import { Quest, QuestPreview } from './quest-types';
 
 export type State = ReturnType<typeof store.getState>;
 
@@ -10,6 +12,17 @@ export type UserData = {
 }
 
 export type AuthData = {
-  login: string;
+  email: string;
   password: string;
 };
+
+export type UserProcess = {
+  authorizationStatus: AuthorizationStatus;
+  user: UserData;
+};
+
+export type QuestsProcess = {
+  quests: QuestPreview[];
+  selectedQuest: Quest;
+}
+

@@ -1,16 +1,11 @@
-import { createReducer } from '@reduxjs/toolkit';
-import { fetchAllQuests } from './api-actions';
-import { quests } from '../mocks/quests-mock';
+import { combineReducers } from '@reduxjs/toolkit';
 
-const initialState = {
-  quests
-};
+import { NameSpace } from '../const/name-space';
+import { questsProcess } from './quests-process/quest-process';
+import { userProcess } from './user-process/user-process';
 
-const reducer = createReducer(initialState, (builder) => {
-  builder
-    .addCase(fetchAllQuests, (state, action) => {
-      state.quests = action.payload;
-    });
+
+export const rootReducer = combineReducers({
+  [NameSpace.Quest]: questsProcess.reducer,
+  [NameSpace.User]: userProcess.reducer
 });
-
-export {reducer};
