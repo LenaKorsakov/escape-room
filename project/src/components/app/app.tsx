@@ -9,7 +9,6 @@ import LoginPage from '../../pages/login-page/login-page';
 import ContactsPage from '../../pages/contacts-page/contacts-page';
 
 import { AppRoute } from '../../const/app-route';
-import { quests } from '../../mocks/quests-mock';
 
 function App(): JSX.Element {
   return(
@@ -17,7 +16,7 @@ function App(): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage quests={quests}/>}
+          element={<MainPage/>}
         >
         </Route>
         <Route

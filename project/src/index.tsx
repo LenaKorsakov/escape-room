@@ -4,11 +4,15 @@ import { Provider } from 'react-redux';
 import {ToastContainer} from 'react-toastify';
 
 import App from './components/app/app';
+import { checkAuthorizationStatusAction, fetchQuestPreviewsAction } from './store/api-actions';
 import { store } from './store/index';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
+
+store.dispatch(fetchQuestPreviewsAction());
+store.dispatch(checkAuthorizationStatusAction());
 
 root.render(
   <React.StrictMode>

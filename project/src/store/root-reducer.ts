@@ -1,7 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
 import { NameSpace } from '../const/name-space';
-import { questsProcess } from './quests-process/quest-process';
+import { questsProcess } from './quests-process/quests-process';
 import { userProcess } from './user-process/user-process';
 
 
