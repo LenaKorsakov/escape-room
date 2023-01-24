@@ -15,3 +15,24 @@ coverImgWebp: string;
 }
 
 export type QuestPreview = Pick<Quest, 'id'|'title'|'previewImg'|'previewImgWebp'|'level'|'peopleMinMax'>;
+
+export type QuestInfo = {
+  id: number;
+  locations: Location[];
+  slots: {
+    today: TimeSlot[];
+    tomorrow: TimeSlot[];
+  };
+}
+
+type Location = {
+  id: number;
+  address: string;
+  coords: [number, number];
+}
+
+type TimeSlot = {
+  time: string;
+  isAvailable: boolean;
+}
+
