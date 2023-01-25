@@ -2,10 +2,12 @@ import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
 import { IconrUrl, IconSize } from '../../const/icon-url';
+//import { useState } from 'react';
 
 
 type MapProps = {
 coordinates: [number, number];
+//center: [number, number];
 }
 
 const defaultIcon = new Icon({
@@ -14,7 +16,14 @@ const defaultIcon = new Icon({
   iconAnchor: IconSize.Anchor
 });
 
+// const activeIcon = new Icon({
+//   iconUrl: IconrUrl.Active,
+//   iconSize: IconSize.Size,
+//   iconAnchor: IconSize.Anchor
+// });
+
 function Map({coordinates}: MapProps): JSX.Element {
+//const [activePlace, setActivePlace] = useState<Quest|null>(null);//предполагаю, что потребуется 2 разных компонента с картой: статичный с СПб и тот, где в качестве пропса будет приходить квест и вычисляться адрес, на котором был совершен клик
 
   return(
     <MapContainer
