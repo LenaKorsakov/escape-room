@@ -9,8 +9,13 @@ import LoginPage from '../../pages/login-page/login-page';
 import ContactsPage from '../../pages/contacts-page/contacts-page';
 
 import { AppRoute } from '../../const/app-route';
+import PrivateRouter from '../private-router/private-router';
+import { useAppSelector } from '../../hooks';
+import { getAuthorizationStatus } from '../../store/user-process/user-process-selectors';
 
 function App(): JSX.Element {
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
   return(
     <BrowserRouter>
       <Routes>
@@ -36,12 +41,20 @@ function App(): JSX.Element {
         </Route>
         <Route
           path={`${AppRoute.Quest}/:id/booking`}
-          element={<BookingPage/>}
+          element={
+            <PrivateRouter aurhorizationStatus={authorizationStatus}>
+              <BookingPage/>
+            </PrivateRouter>
+          }
         >
         </Route>
         <Route
           path={AppRoute.MyQuests}
-          element={<MyQuestsPage/>}
+          element={
+            <PrivateRouter aurhorizationStatus={authorizationStatus}>
+              <MyQuestsPage/>
+            </PrivateRouter>
+          }
         >
         </Route>
         <Route
