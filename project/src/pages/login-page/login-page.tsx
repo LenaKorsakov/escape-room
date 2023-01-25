@@ -1,10 +1,10 @@
-import Header from '../../components/header/header';
+import HeaderLogin from '../../components/header/header-login';
 import LoginForm from '../../components/login-form/login-form';
 
 function LoginPage(): JSX.Element {
   return(
     <>
-      <Header />
+      <HeaderLogin />
       <main className="decorated-page login">
         <div className="decorated-page__decor" aria-hidden="true">
           <picture>

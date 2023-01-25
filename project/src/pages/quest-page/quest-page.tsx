@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
@@ -17,15 +17,16 @@ function QuestPage(): JSX.Element {
   const {id} = useParams() as {id: string};
   const questId = +id;
 
-  store.dispatch(fetchQuestByIdAction(questId)).unwrap().then(
-    (quest) => {
-      setSelectedQuest(quest);
-    },
-    () => {
-      setErrorWhileLoading(true);
-    }
-  );
-
+  useEffect(()=> {
+    store.dispatch(fetchQuestByIdAction(questId)).unwrap().then(
+      (quest) => {
+        setSelectedQuest(quest);
+      },
+      () => {
+        setErrorWhileLoading(true);
+      }
+    );
+  }, [questId]);
 
   if (errorWhileLoading) {
     return (<NotFoundPage/>);

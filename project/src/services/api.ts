@@ -7,7 +7,7 @@ import { getToken } from './token';
 const BACKEND_URL = 'https://grading.design.pages.academy';
 const REQUEST_TIMEOUT = 5000;
 
-const statusErrors = new Set([StatusCodes.BAD_REQUEST, StatusCodes.NOT_FOUND]);
+const statusErrors = new Set([StatusCodes.BAD_REQUEST, StatusCodes.NOT_FOUND, StatusCodes.UNAUTHORIZED]);
 const shouldDisplayError = (response: AxiosResponse) => statusErrors.has(response.status);
 
 export const createApi = (): AxiosInstance => {
@@ -28,10 +28,12 @@ export const createApi = (): AxiosInstance => {
   );
 
   api.interceptors.response.use(
-    (responce) => responce,
+    (response) => response,
     (error: AxiosError<{error: string}>) => {
       if(error.response && shouldDisplayError(error.response)) {
-        toast.error(`${error.response.data.error}`);
+        // eslint-disable-next-line no-console
+        console.log(error.response.data.error);
+        toast.warn('something going wrong');
       }
 
       throw error;
