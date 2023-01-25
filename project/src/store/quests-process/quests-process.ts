@@ -6,7 +6,8 @@ import { fetchQuestByIdAction, fetchQuestPreviewsAction } from '../api-actions';
 
 const initialState: QuestsProcess = {
   quests: [],
-  selectedQuest: {} as Quest
+  selectedQuest: {} as Quest,
+  isQuestsLoading: false
 };
 
 export const questsProcess = createSlice({
@@ -17,6 +18,13 @@ export const questsProcess = createSlice({
     builder
       .addCase(fetchQuestPreviewsAction.fulfilled, (state, action) => {
         state.quests = action.payload;
+        state.isQuestsLoading = false;
+      })
+      .addCase(fetchQuestPreviewsAction.pending, (state) => {
+        state.isQuestsLoading = true;
+      })
+      .addCase(fetchQuestPreviewsAction.rejected, (state) => {
+        state.isQuestsLoading = false;
       })
       .addCase(fetchQuestByIdAction.fulfilled, (state, action) =>{
         state.selectedQuest = action.payload;

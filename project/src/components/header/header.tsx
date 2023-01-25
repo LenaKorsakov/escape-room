@@ -9,8 +9,6 @@ export const HeaderContext = createContext<AuthorizationStatus>(AuthorizationSta
 
 function Header(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  // eslint-disable-next-line no-console
-  console.log(authorizationStatus);
 
   return (
     <HeaderContext.Provider value={authorizationStatus}>

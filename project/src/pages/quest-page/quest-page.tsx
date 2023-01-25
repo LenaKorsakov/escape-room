@@ -32,7 +32,7 @@ function QuestPage(): JSX.Element {
     return (<NotFoundPage/>);
   }
 
-  if (! selectedQuest) {
+  if (!selectedQuest) {
     return (<LoadingPage/>);
   }
 

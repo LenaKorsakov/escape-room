@@ -25,5 +25,6 @@ export type UserProcess = {
 export type QuestsProcess = {
   quests: QuestPreview[];
   selectedQuest: Quest;
+  isQuestsLoading: boolean;
 }
 

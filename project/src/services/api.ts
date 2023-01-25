@@ -7,7 +7,7 @@ import { getToken } from './token';
 const BACKEND_URL = 'https://grading.design.pages.academy';
 const REQUEST_TIMEOUT = 5000;
 
-const statusErrors = new Set([StatusCodes.BAD_REQUEST, StatusCodes.NOT_FOUND, StatusCodes.UNAUTHORIZED]);
+const statusErrors = new Set([StatusCodes.BAD_REQUEST, StatusCodes.NOT_FOUND]);
 const shouldDisplayError = (response: AxiosResponse) => statusErrors.has(response.status);
 
 export const createApi = (): AxiosInstance => {
