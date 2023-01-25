@@ -1,10 +1,35 @@
+import { FormEvent, useRef } from 'react';
+import { LoginButtonText } from '../../const/login-button-text';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { loginAction } from '../../store/api-actions';
+import { getIsLoginLoading } from '../../store/user-process/user-process-selectors';
+
 function LoginForm(): JSX.Element {
+  const emailRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
+
+  const isLoginLoading = useAppSelector(getIsLoginLoading);
+
+  const dispatch = useAppDispatch();
+
+  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if(emailRef.current && passwordRef.current) {
+      dispatch(loginAction({
+        email: emailRef.current?.value,
+        password: passwordRef.current?.value
+      }));
+    }
+  };
+
   return(
     <div className="login__form">
       <form
         className="login-form"
-        action="https://echo.htmlacademy.ru/"
+        action=""
         method="post"
+        onSubmit={handleFormSubmit}
       >
         <div className="login-form__inner-wrapper">
           <h1 className="title title--size-s login-form__title">Вход</h1>
@@ -14,6 +39,7 @@ function LoginForm(): JSX.Element {
                     E&nbsp;–&nbsp;mail
               </label>
               <input
+                ref={emailRef}
                 type="email"
                 id="email"
                 name="email"
@@ -26,6 +52,7 @@ function LoginForm(): JSX.Element {
                     Пароль
               </label>
               <input
+                ref={passwordRef}
                 type="password"
                 id="password"
                 name="password"
@@ -38,7 +65,7 @@ function LoginForm(): JSX.Element {
             className="btn btn--accent btn--general login-form__submit"
             type="submit"
           >
-                Войти
+            {isLoginLoading ? LoginButtonText.Clicked : LoginButtonText.Default}
           </button>
         </div>
         <label className="custom-checkbox login-form__checkbox">
