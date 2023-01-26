@@ -1,8 +1,18 @@
 import { FormEvent, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { AppRoute } from '../../const/app-route';
 import { LoginButtonText } from '../../const/login-button-text';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 import { getIsLoginLoading } from '../../store/user-process/user-process-selectors';
+import { displayError } from '../../store/actions';
+import { WarningMessage } from '../../const/warning-message';
+
+type LocationState = {
+  from: {
+    pathname: string;
+  };
+}
 
 function LoginForm(): JSX.Element {
   const emailRef = useRef<HTMLInputElement | null>(null);
@@ -10,6 +20,8 @@ function LoginForm(): JSX.Element {
 
   const isLoginLoading = useAppSelector(getIsLoginLoading);
 
+  const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useAppDispatch();
 
   const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -19,8 +31,22 @@ function LoginForm(): JSX.Element {
       dispatch(loginAction({
         email: emailRef.current?.value,
         password: passwordRef.current?.value
-      }));
-    }
+      }))
+        .unwrap().then(
+          () => {
+            if((location.state as LocationState)?.from) {
+              const { pathname } = (location.state as LocationState).from;
+
+              navigate(pathname);
+            } else {
+
+              navigate(AppRoute.Main);
+            }
+          },
+          () => {
+            dispatch(displayError(WarningMessage.SendingError));
+          }
+        );}
   };
 
   return(

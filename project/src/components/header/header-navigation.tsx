@@ -15,7 +15,7 @@ function HeaderNavigation(): JSX.Element {
         <li className="main-nav__item">
           <NavLink
             className={({isActive}) => (isActive ? 'link active' : 'link')}
-            to={AppRoute.Main}
+            to={AppRoute.Main} end
           >
             Квесты
           </NavLink>

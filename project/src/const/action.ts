@@ -11,4 +11,6 @@ export const Action = {
   CheckAuthorizationStatus: 'user/checkAuthorizationStatus',
   UserLogIn: 'user/login',
   UserLogOut: 'user/logout',
+
+  DisplayError: 'app/displayError'
 } as const;

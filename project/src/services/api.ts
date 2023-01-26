@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import { StatusCodes } from 'http-status-codes';
 
 import { getToken } from './token';
+import { WarningMessage } from '../const/warning-message';
 
 const BACKEND_URL = 'https://grading.design.pages.academy';
 const REQUEST_TIMEOUT = 5000;
@@ -33,7 +34,7 @@ export const createApi = (): AxiosInstance => {
       if(error.response && shouldDisplayError(error.response)) {
         // eslint-disable-next-line no-console
         console.log(error.response.data.error);
-        toast.warn('something going wrong');
+        toast.warn(WarningMessage.SendingError);
       }
 
       throw error;
