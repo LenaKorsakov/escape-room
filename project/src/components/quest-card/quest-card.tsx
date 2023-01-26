@@ -16,7 +16,7 @@ function QuestCard({quest}: QuestCardProps): JSX.Element {
         <picture>
           <source
             type="image/webp"
-            srcSet={`${previewImgWebp}, ${previewImgWebp} 2x`} //TODO
+            srcSet={`${previewImgWebp}, ${previewImgWebp} 2x`}
           />
           <img
             src={previewImg}

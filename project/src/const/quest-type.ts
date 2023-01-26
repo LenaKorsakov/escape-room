@@ -3,5 +3,6 @@ export enum QuestType {
   Horror = 'horror',
   Mystic ='mystic',
   Detective = 'detective',
-  SciFi = 'sci-fi'
+  SciFi = 'sci-fi',
+  All = 'all'
 }
