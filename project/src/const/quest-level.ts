@@ -4,3 +4,5 @@ export enum QuestLevel {
  Hard = 'hard',
  Any = 'any'
 }
+
+export const QUEST_BY_LEVEL_DEFAULT = QuestLevel.Any;

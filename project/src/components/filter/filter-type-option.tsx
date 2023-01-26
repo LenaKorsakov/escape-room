@@ -1,3 +1,6 @@
+import { useAppSelector } from '../../hooks';
+import { getFilterByType } from '../../store/filter-process/filter-process-selectors';
+
 type FilterTypeOptionProps = {
   type: string;
   title: string;
@@ -5,10 +8,20 @@ type FilterTypeOptionProps = {
 };
 
 function FilterTypeOption({type, title, pictureHref}: FilterTypeOptionProps):JSX.Element {
+  const selectedType = useAppSelector(getFilterByType);
+
   return(
     <li className="filter__item">
-      <input type="radio" name="type" id={type}/>
-      <label className="filter__label" htmlFor={type}>
+      <input
+        type="radio"
+        name="type"
+        id={type}
+        checked={selectedType === type} readOnly
+      />
+      <label
+        className="filter__label"
+        htmlFor={type}
+      >
         <svg
           className="filter__icon"
           width={26}
@@ -17,7 +30,11 @@ function FilterTypeOption({type, title, pictureHref}: FilterTypeOptionProps):JSX
         >
           <use xlinkHref={pictureHref} />
         </svg>
-        <span className="filter__label-text">{title}</span>
+        <span
+          className="filter__label-text"
+        >
+          {title}
+        </span>
       </label>
     </li>
   );

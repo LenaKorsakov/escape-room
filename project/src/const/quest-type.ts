@@ -6,3 +6,5 @@ export enum QuestType {
   SciFi = 'sci-fi',
   All = 'all'
 }
+export const QUEST_BY_TYPE_DEFAULT = QuestType.All;
+
