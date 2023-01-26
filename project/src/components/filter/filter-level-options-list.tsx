@@ -12,7 +12,6 @@ function FilterLevelOptionsList():JSX.Element {
     const selectedOption = event.target as HTMLLIElement;
 
     dispatch(changeLevel(selectedOption.id as QuestLevel));
-
   };
 
   return(

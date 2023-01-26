@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../hooks';
-import { getFilterByType } from '../../store/filter-process/filter-process-selectors';
+import { getFilterOptionByType } from '../../store/filter-process/filter-process-selectors';
 
 type FilterTypeOptionProps = {
   type: string;
@@ -8,7 +8,7 @@ type FilterTypeOptionProps = {
 };
 
 function FilterTypeOption({type, title, pictureHref}: FilterTypeOptionProps):JSX.Element {
-  const selectedType = useAppSelector(getFilterByType);
+  const selectedType = useAppSelector(getFilterOptionByType);
 
   return(
     <li className="filter__item">
@@ -17,6 +17,7 @@ function FilterTypeOption({type, title, pictureHref}: FilterTypeOptionProps):JSX
         name="type"
         id={type}
         checked={selectedType === type} readOnly
+        disabled={selectedType === type} //TODO
       />
       <label
         className="filter__label"

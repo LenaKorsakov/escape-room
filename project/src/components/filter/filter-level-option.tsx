@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../hooks';
-import { getFilterByLevel } from '../../store/filter-process/filter-process-selectors';
+import { getFilterOptionByLevel } from '../../store/filter-process/filter-process-selectors';
 
 type FilterLevelOptionProps = {
   level: string;
@@ -7,7 +7,7 @@ type FilterLevelOptionProps = {
 };
 
 function FilterLevelOption({level, title}: FilterLevelOptionProps):JSX.Element {
-  const selectedLevel = useAppSelector(getFilterByLevel);
+  const selectedLevel = useAppSelector(getFilterOptionByLevel);
 
   return(
     <li className="filter__item">
@@ -16,6 +16,7 @@ function FilterLevelOption({level, title}: FilterLevelOptionProps):JSX.Element {
         name="level"
         id={level}
         checked={selectedLevel === level} readOnly
+        disabled={selectedLevel === level} //TODO
       />
       <label
         className="filter__label"

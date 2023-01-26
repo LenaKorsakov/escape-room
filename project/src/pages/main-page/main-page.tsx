@@ -5,10 +5,21 @@ import LoadingPage from '../loading-page/loading-page';
 
 import { useAppSelector } from '../../hooks';
 import { getAllQuests, isQuestsLoading } from '../../store/quests-process/quests-process-selectors';
+import { getFilterOptionByLevel, getFilterOptionByType } from '../../store/filter-process/filter-process-selectors';
+import { filterQuestByLevel, filterQuestByType } from '../../utiles/filter-predicates';
+import EmptyPlug from '../../components/map/empty-plug/empty-plug';
+import { EmptyPlugText } from '../../const/empty-plug-text';
 
 function MainPage():JSX.Element {
-  const quests = useAppSelector(getAllQuests);
   const isLoading = useAppSelector(isQuestsLoading);
+
+  const quests = useAppSelector(getAllQuests);
+  const selectedType = useAppSelector(getFilterOptionByType);
+  const selectedLevel = useAppSelector(getFilterOptionByLevel);
+
+  const filteredQuests = quests
+    .filter((quest) => filterQuestByType(quest, selectedType))
+    .filter((quest) => filterQuestByLevel(quest, selectedLevel));
 
   return (
     isLoading ? <LoadingPage/>
@@ -30,12 +41,14 @@ function MainPage():JSX.Element {
             </div>
             <h2 className="title visually-hidden">Выберите квест</h2>
             <div className="cards-grid">
-              {quests.map((quest) => (
-                <QuestCard
-                  key={quest.id}
-                  quest={quest}
-                />
-              ))}
+              { filteredQuests.length ?
+                filteredQuests.map((quest) => (
+                  <QuestCard
+                    key={quest.id}
+                    quest={quest}
+                  />
+                ))
+                : <EmptyPlug text={EmptyPlugText.NoQuestsByFilter}/>}
             </div>
           </div>
         </main>
