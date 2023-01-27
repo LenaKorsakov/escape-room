@@ -34,7 +34,7 @@ export const createApi = (): AxiosInstance => {
       if(error.response && shouldDisplayError(error.response)) {
         // eslint-disable-next-line no-console
         console.log(error.response.data.error);
-        toast.warn(WarningMessage.SendingError);
+        toast.warn(WarningMessage.SendError);
       }
 
       throw error;

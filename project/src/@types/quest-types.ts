@@ -25,7 +25,7 @@ export type QuestInfo = {
   };
 }
 
-type Location = {
+export type Location = {
   id: number;
   address: string;
   coords: [number, number];

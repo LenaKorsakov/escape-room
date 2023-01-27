@@ -1,8 +1,8 @@
 import { PointExpression } from 'leaflet';
 
 export const IconrUrl = {
-  Default: 'img/svg/pin-default.svg',
-  Active: 'img/svg/pin-active.svg',
+  Default: '/img/svg/pin-default.svg',
+  Active: '/img/svg/pin-active.svg',
 } as const;
 
 export const IconSize = {

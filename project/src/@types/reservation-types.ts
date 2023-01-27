@@ -1,7 +1,7 @@
-import { Time } from '../const/time';
+import { Date } from '../const/date';
 
 export type BookingInfo = {
-date: Time;
+date: Date;
 time: string;
 contactPerson: string;
 phone: string;

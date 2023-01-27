@@ -1,64 +1,120 @@
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function BookingForm():JSX.Element {
+import DatePickerOption from './date-picker-option';
+
+import { useAppDispatch } from '../../hooks';
+import { sendBookingInfoAction } from '../../store/api-actions';
+import { displayError } from '../../store/actions';
+
+import { QuestInfo } from '../../@types/quest-types';
+import { BookingInfo } from '../../@types/reservation-types';
+
+import { Date } from '../../const/date';
+import { AppRoute } from '../../const/app-route';
+import { WarningMessage } from '../../const/warning-message';
+
+type bookingFormProps = {
+  quest: QuestInfo;
+}
+function BookingForm({quest}: bookingFormProps):JSX.Element {
+  const { slots, id } = quest;
+  const { today, tomorrow } = slots;
+
+  const initialBookingInfoState: BookingInfo = {
+    date: Date.TODAY,
+    time: '',
+    contactPerson: '',
+    phone: '',
+    withChildren: false,
+    peopleCount: 0,
+    locationId: 2,
+    questId: id
+  };
+
+  const [formData, setFormData] = useState<BookingInfo>(initialBookingInfoState);
+
+  const handleTodayDatePickerOptionChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      time: event.target.value,
+      date: Date.TODAY
+    });
+  };
+
+  const handleTommorowDatePickerOptionChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      time: event.target.value,
+      date: Date.TOMORROW
+    });
+  };
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = event.target;
+
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value
+    });
+  };
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleFormSubmit = (event: FormEvent) => {
+    event.preventDefault();
+
+    dispatch(sendBookingInfoAction({
+      ...formData,
+      peopleCount: +formData.peopleCount
+    })).unwrap().then(
+      () => {
+        navigate(AppRoute.MyQuests);
+      },
+      () => dispatch(displayError(WarningMessage.SendError))
+    );
+  };
 
   return (
     <form
       className="booking-form"
       action=""
       method="post"
+      onSubmit={handleFormSubmit}
     >
       <fieldset className="booking-form__section">
         <legend className="visually-hidden">Выбор даты и времени</legend>
         <fieldset className="booking-form__date-section">
           <legend className="booking-form__date-title">Сегодня</legend>
-          <div className="booking-form__date-inner-wrapper">
-            <label className="custom-radio booking-form__date">
-              <input
-                type="radio"
-                id="today9h45m"
-                name="date"
-                required
-                defaultValue="today9h45m"
+          <div
+            className="booking-form__date-inner-wrapper"
+            onChange={handleTodayDatePickerOptionChange}
+          >
+            {today.map(({time, isAvailable}) => (
+              <DatePickerOption
+                time={time}
+                isAvailable={isAvailable}
+                day={Date.TODAY}
+                key={`${Date.TODAY}-${time}`}
               />
-              <span className="custom-radio__label">9:45</span>
-            </label>
-            <label className="custom-radio booking-form__date">
-              <input
-                type="radio"
-                id="today15h00m"
-                name="date"
-                defaultChecked
-                required
-                defaultValue="today15h00m"
-              />
-              <span className="custom-radio__label">15:00</span>
-            </label>
+            ))}
           </div>
         </fieldset>
         <fieldset className="booking-form__date-section">
           <legend className="booking-form__date-title">Завтра</legend>
-          <div className="booking-form__date-inner-wrapper">
-            <label className="custom-radio booking-form__date">
-              <input
-                type="radio"
-                id="tomorrow11h00m"
-                name="date"
-                required
-                defaultValue="tomorrow11h00m"
+          <div
+            className="booking-form__date-inner-wrapper"
+            onChange={handleTommorowDatePickerOptionChange}
+          >
+            {tomorrow.map(({time, isAvailable}) => (
+              <DatePickerOption
+                time={time}
+                isAvailable={isAvailable}
+                day={Date.TOMORROW}
+                key={`${Date.TOMORROW}-${time}`}
               />
-              <span className="custom-radio__label">11:00</span>
-            </label>
-            <label className="custom-radio booking-form__date">
-              <input
-                type="radio"
-                id="tomorrow15h00m"
-                name="date"
-                required
-                defaultValue="tomorrow15h00m"
-                disabled
-              />
-              <span className="custom-radio__label">15:00</span>
-            </label>
+            ))}
           </div>
         </fieldset>
       </fieldset>
@@ -71,8 +127,10 @@ function BookingForm():JSX.Element {
           <input
             type="text"
             id="name"
-            name="name"
+            name="contactPerson"
             placeholder="Имя"
+            onChange={handleInputChange}
+            value={formData.contactPerson}
             required
             pattern="[А-Яа-яЁёA-Za-z'- ]{1,}"
           />
@@ -84,8 +142,10 @@ function BookingForm():JSX.Element {
           <input
             type="tel"
             id="tel"
-            name="tel"
+            name="phone"
             placeholder="Телефон"
+            onChange={handleInputChange}
+            value={formData.phone}
             required
             pattern="[0-9]{10,}"
           />
@@ -97,8 +157,10 @@ function BookingForm():JSX.Element {
           <input
             type="number"
             id="person"
-            name="person"
+            name="peopleCount"
             placeholder="Количество участников"
+            onChange={handleInputChange}
+            value={formData.peopleCount}
             required
           />
         </div>
@@ -106,8 +168,8 @@ function BookingForm():JSX.Element {
           <input
             type="checkbox"
             id="children"
-            name="children"
-            defaultChecked
+            name="withChildren"
+            onChange={handleInputChange}
           />
           <span className="custom-checkbox__icon">
             <svg width={20} height={17} aria-hidden="true">

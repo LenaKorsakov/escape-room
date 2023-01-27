@@ -1,4 +1,4 @@
-export enum Time {
+export enum Date {
   TODAY = 'today',
   TOMORROW = 'tomorrow'
 }

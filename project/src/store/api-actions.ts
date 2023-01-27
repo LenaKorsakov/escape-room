@@ -5,8 +5,9 @@ import { dropToken, saveToken } from '../services/token';
 import { ApiRoutes } from '../const/api-routes';
 import { Action } from '../const/action';
 
-import { QuestPreview, Quest } from '../@types/quest-types';
+import { QuestPreview, Quest, QuestInfo } from '../@types/quest-types';
 import { UserData, AuthData, AppDispatch, State } from '../@types/store-types';
+import { BookingInfo } from '../@types/reservation-types';
 
 export const fetchQuestPreviewsAction = createAsyncThunk<
   QuestPreview[],
@@ -32,13 +33,44 @@ number,
   state: State;
   extra: AxiosInstance;
 }
->(Action.FetchQuestById,
+>(Action.FetchQuestBookingInfoById,
   async (id, { extra: api}) => {
     const { data } = await api.get<Quest>(`${ApiRoutes.Quests}/${id}`);
 
     return data;
   }
 );
+
+export const fetchQuestBookingInfoByIdAction = createAsyncThunk<
+QuestInfo,
+number,
+{
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}
+>(Action.FetchQuestById,
+  async (id, { extra: api}) => {
+    const { data } = await api.get<QuestInfo>(`${ApiRoutes.Quests}/${id}/booking`);
+
+    return data;
+  }
+);
+
+export const sendBookingInfoAction = createAsyncThunk<
+  void,
+  BookingInfo,
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+  >(Action.SendBookingInfo,
+    async(ReservationInfo, {extra: api}) => {
+
+      await api.post<BookingInfo>(`${ApiRoutes.Quests}/${ReservationInfo.questId}/booking`, ReservationInfo);
+    }
+  );
 
 export const loginAction = createAsyncThunk<
   UserData,

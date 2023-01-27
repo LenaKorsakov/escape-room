@@ -2,7 +2,7 @@ export const Action = {
   FetchAllQuests: 'quest/fetchQuestsPreview',
   FetchQuestById: 'property/fetchQuestById',
 
-  FetchQuestBookingInfoById: 'booking/fetchQuestInfoById',
+  FetchQuestBookingInfoById: 'booking/fetchQuestBookingInfoById',
   SendBookingInfo: 'booking/sendBookingInfo',
 
   FetchUserReservations: 'reservation/fetchUserReservations',

@@ -16,13 +16,13 @@ function PrivateRouter({children, aurhorizationStatus}: PrivateRouterProps): JSX
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if(aurhorizationStatus !== AuthorizationStatus.Auth) {
+    if(aurhorizationStatus === AuthorizationStatus.NoAuth) {
       dispatch(displayError(WarningMessage.NoAuthWarning));
     }
-  }, [aurhorizationStatus, dispatch]);
+  }, [aurhorizationStatus, dispatch]);//зачем этот хук
 
   return (
-    (aurhorizationStatus !== AuthorizationStatus.Auth)
+    (aurhorizationStatus === AuthorizationStatus.NoAuth)
       ? <Navigate to={AppRoute.Login} replace state={{from: location}}/>
       : children
   );}

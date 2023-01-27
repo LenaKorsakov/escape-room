@@ -1,18 +1,25 @@
+import { QuestInfo } from '../../@types/quest-types';
 import Map from './map';
 
-function BookingMap():JSX.Element {
+type bookingMapProps = {
+  quest: QuestInfo;
+}
+
+function BookingMap({quest}: bookingMapProps):JSX.Element {
+  const { locations } = quest;
 
   return (
-    <div className="booking-map">
-      <div className="map">
-        <div className="map__container">
-          <Map coordinates={[50.5, 13]}/>
+    <div className="page-content__item">
+      <div className="booking-map">
+        <div className="map">
+          <div className="map__container">
+            <Map locations={locations}/>
+          </div>
         </div>
+        <p className="booking-map__address">
+              Вы&nbsp;выбрали: {locations[0].address}
+        </p>
       </div>
-      <p className="booking-map__address">
-              Вы&nbsp;выбрали: наб. реки Карповки&nbsp;5, лит&nbsp;П, м.
-              Петроградская
-      </p>
     </div>
   );
 }

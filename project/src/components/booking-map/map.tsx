@@ -2,12 +2,11 @@ import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
 import { IconrUrl, IconSize } from '../../const/icon-url';
+import { Location } from '../../@types/quest-types';
 //import { useState } from 'react';
 
-
 type MapProps = {
-coordinates: [number, number];
-//center: [number, number];
+locations: Location[];
 }
 
 const defaultIcon = new Icon({
@@ -22,12 +21,12 @@ const defaultIcon = new Icon({
 //   iconAnchor: IconSize.Anchor
 // });
 
-function Map({coordinates}: MapProps): JSX.Element {
+function Map({locations}: MapProps): JSX.Element {
 //const [activePlace, setActivePlace] = useState<Quest|null>(null);//предполагаю, что потребуется 2 разных компонента с картой: статичный с СПб и тот, где в качестве пропса будет приходить квест и вычисляться адрес, на котором был совершен клик
 
   return(
     <MapContainer
-      center={coordinates}
+      center={locations[0].coords}
       zoom={15}
       style={{ height: '100%', width: '100%' }}
     >
@@ -35,11 +34,15 @@ function Map({coordinates}: MapProps): JSX.Element {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
         url='https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
       />
-      <Marker
-        position={coordinates}
-        icon={defaultIcon}
-      >
-      </Marker>
+      {locations.map(({coords, id}) => (
+        <Marker
+          position={coords}
+          icon={defaultIcon}
+          key={id}
+        >
+        </Marker>
+      )
+      )}
     </MapContainer>
   );
 }
