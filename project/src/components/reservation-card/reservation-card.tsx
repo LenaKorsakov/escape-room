@@ -8,7 +8,7 @@ import { Reservation } from '../../@types/reservation-types';
 
 import { AppRoute } from '../../const/app-route';
 import { WarningMessage } from '../../const/warning-message';
-import { capitalizeFirstLetter } from '../../utiles/format';
+import { capitalizeFirstLetter, translateDate, translateLevel } from '../../utiles/format';
 
 type ReservationCardProps = {
   reservation: Reservation;
@@ -53,7 +53,7 @@ function ReservationCard({reservation}: ReservationCardProps): JSX.Element {
             {capitalizeFirstLetter(quest.title)}
           </Link>
           <span className="quest-card__info">
-                  [{`${date},${' '}${time}. ${address}`}]
+                  [{`${translateDate(date)},${' '}${time}. ${address}`}]
           </span>
         </div>
         <ul className="tags quest-card__tags">
@@ -67,7 +67,7 @@ function ReservationCard({reservation}: ReservationCardProps): JSX.Element {
             <svg width={14} height={14} aria-hidden="true">
               <use xlinkHref="#icon-level" />
             </svg>
-            {capitalizeFirstLetter(quest.level)}
+            {translateLevel(quest.level)}
           </li>
         </ul>
         <button

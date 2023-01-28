@@ -1,6 +1,6 @@
 export enum WarningMessage {
-  SendError = 'There was an error sending data.Try reloading this page.',
-  LoadingError = 'There was an error loading data.Try reloading this page.',
-  NoAuthWarning = 'You are not logged in or you do not have permission to this page.',
+  SendError = 'Ошибка при отправке данных. Попробуйте снова.',
+  LoadingError = 'Ошибка при загрузке данных. Попробуйте перезагрузить страницу.',
+  NoAuthWarning = 'Вы не авторизованы или вы не имеете доступа к данной страницe.',
   NoError = ''
   }

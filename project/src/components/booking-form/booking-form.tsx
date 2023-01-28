@@ -10,7 +10,7 @@ import { displayError } from '../../store/actions';
 import { QuestInfo } from '../../@types/quest-types';
 import { BookingInfo } from '../../@types/reservation-types';
 
-import { Date } from '../../const/date';
+import { DateRaw } from '../../const/date';
 import { AppRoute } from '../../const/app-route';
 import { WarningMessage } from '../../const/warning-message';
 
@@ -22,7 +22,7 @@ function BookingForm({quest}: bookingFormProps):JSX.Element {
   const { today, tomorrow } = slots;
 
   const initialBookingInfoState: BookingInfo = {
-    date: Date.TODAY,
+    date: DateRaw.TODAY,
     time: '',
     contactPerson: '',
     phone: '',
@@ -38,7 +38,7 @@ function BookingForm({quest}: bookingFormProps):JSX.Element {
     setFormData({
       ...formData,
       time: event.target.value,
-      date: Date.TODAY
+      date: DateRaw.TODAY
     });
   };
 
@@ -46,7 +46,7 @@ function BookingForm({quest}: bookingFormProps):JSX.Element {
     setFormData({
       ...formData,
       time: event.target.value,
-      date: Date.TOMORROW
+      date: DateRaw.TOMORROW
     });
   };
 
@@ -97,8 +97,8 @@ function BookingForm({quest}: bookingFormProps):JSX.Element {
               <DatePickerOption
                 time={time}
                 isAvailable={isAvailable}
-                day={Date.TODAY}
-                key={`${Date.TODAY}-${time}`}
+                day={DateRaw.TODAY}
+                key={`${DateRaw.TODAY}-${time}`}
               />
             ))}
           </div>
@@ -113,8 +113,8 @@ function BookingForm({quest}: bookingFormProps):JSX.Element {
               <DatePickerOption
                 time={time}
                 isAvailable={isAvailable}
-                day={Date.TOMORROW}
-                key={`${Date.TOMORROW}-${time}`}
+                day={DateRaw.TOMORROW}
+                key={`${DateRaw.TOMORROW}-${time}`}
               />
             ))}
           </div>

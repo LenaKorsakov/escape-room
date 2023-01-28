@@ -1,12 +1,12 @@
 import { QuestType } from '../const/quest-type';
-import { QuestLevel } from '../const/quest-level';
+import { QuestLevelRaw } from '../const/quest-level';
 
 export type Quest = {
 id: number;
 title: string;
 previewImg: string;
 previewImgWebp: string;
-level: QuestLevel;
+level: QuestLevelRaw;
 type: QuestType;
 peopleMinMax: [number, number];
 description: string;

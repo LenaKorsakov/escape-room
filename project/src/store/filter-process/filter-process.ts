@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { NameSpace } from '../../const/name-space';
-import { QUEST_BY_LEVEL_DEFAULT, QuestLevel } from '../../const/quest-level';
+import { QUEST_BY_LEVEL_DEFAULT, QuestLevelRaw } from '../../const/quest-level';
 import { QUEST_BY_TYPE_DEFAULT, QuestType } from '../../const/quest-type';
 
 const initialState = {
@@ -15,7 +15,7 @@ export const filterProcess = createSlice({
     changeType: (state, action: PayloadAction<QuestType>) => {
       state.typeOption = action.payload;
     },
-    changeLevel: (state, action: PayloadAction<QuestLevel>) => {
+    changeLevel: (state, action: PayloadAction<QuestLevelRaw>) => {
       state.levelOption = action.payload;
     }
   }

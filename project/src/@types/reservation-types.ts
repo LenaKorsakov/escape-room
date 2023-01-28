@@ -1,9 +1,9 @@
-import { Date } from '../const/date';
+import { DateRaw } from '../const/date';
 import { QuestPreview } from './quest-types';
 import { Location } from './quest-types';
 
 export type BookingInfo = {
-date: Date;
+date: DateRaw;
 time: string;
 contactPerson: string;
 phone: string;
@@ -14,7 +14,7 @@ questId: number;
 }
 
 export type Reservation = {
-    date: Date;
+    date: DateRaw;
     time: string;
     contactPerson: string;
     phone: string;

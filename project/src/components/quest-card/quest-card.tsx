@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { QuestPreview } from '../../@types/quest-types';
 import { AppRoute } from '../../const/app-route';
-import { capitalizeFirstLetter } from '../../utiles/format';
+import { capitalizeFirstLetter, translateLevel } from '../../utiles/format';
 
 type QuestCardProps = {
   quest: QuestPreview;
@@ -45,7 +45,7 @@ function QuestCard({quest}: QuestCardProps): JSX.Element {
             <svg width={14} height={14} aria-hidden="true">
               <use xlinkHref="#icon-level" />
             </svg>
-            {capitalizeFirstLetter(level)}
+            {translateLevel(level)}
           </li>
         </ul>
       </div>

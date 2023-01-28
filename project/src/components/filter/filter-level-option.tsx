@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getFilterOptionByLevel } from '../../store/filter-process/filter-process-selectors';
 import { ChangeEvent } from 'react';
 import { changeLevel } from '../../store/filter-process/filter-process';
-import { QuestLevel } from '../../const/quest-level';
+import { QuestLevelRaw } from '../../const/quest-level';
 
 type FilterLevelOptionProps = {
   level: string;
@@ -16,7 +16,7 @@ function FilterLevelOption({level, title}: FilterLevelOptionProps):JSX.Element {
 
   const handleFilteLevelOptionChange = (event: ChangeEvent<HTMLInputElement>) => {
     const selectedOption = event.target as HTMLInputElement;
-    dispatch(changeLevel(selectedOption.id as QuestLevel));
+    dispatch(changeLevel(selectedOption.id as QuestLevelRaw));
   };
 
   return(

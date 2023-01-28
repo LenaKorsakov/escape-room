@@ -1,8 +1,8 @@
-import { QuestLevel } from './quest-level';
+import { QuestLevelRaw } from './quest-level';
 
 export const FILTER_BY_LEVEL = [
-  {level: QuestLevel.Any, title: 'Любой'},
-  {level: QuestLevel.Easy, title: 'Лёгкий'},
-  {level: QuestLevel.Medium, title: 'Средний'},
-  {level: QuestLevel.Hard, title: 'Сложный'},
+  {level: QuestLevelRaw.Any, title: 'Любой'},
+  {level: QuestLevelRaw.Easy, title: 'Лёгкий'},
+  {level: QuestLevelRaw.Medium, title: 'Средний'},
+  {level: QuestLevelRaw.Hard, title: 'Сложный'},
 ];
