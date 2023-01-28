@@ -9,6 +9,7 @@ type QuestCardProps = {
 
 function QuestCard({quest}: QuestCardProps): JSX.Element {
   const {id, title, previewImg, previewImgWebp, level, peopleMinMax} = quest;
+  const [peopleMin, peopleMax] = peopleMinMax;
 
   return (
     <div className="quest-card">
@@ -38,7 +39,7 @@ function QuestCard({quest}: QuestCardProps): JSX.Element {
             <svg width={11} height={14} aria-hidden="true">
               <use xlinkHref="#icon-person" />
             </svg>
-            {peopleMinMax[0]}–{peopleMinMax[1]}&nbsp;чел
+            {peopleMin}–{peopleMax}&nbsp;чел
           </li>
           <li className="tags__item">
             <svg width={14} height={14} aria-hidden="true">

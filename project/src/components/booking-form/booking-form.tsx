@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import DatePickerOption from './date-picker-option';
 
 import { useAppDispatch } from '../../hooks';
-import { sendBookingInfoAction } from '../../store/api-actions';
+import { fetchReservationsAction, sendBookingInfoAction } from '../../store/api-actions';
 import { displayError } from '../../store/actions';
 
 import { QuestInfo } from '../../@types/quest-types';
@@ -28,7 +28,7 @@ function BookingForm({quest}: bookingFormProps):JSX.Element {
     phone: '',
     withChildren: false,
     peopleCount: 0,
-    locationId: 2,
+    locationId: 1,
     questId: id
   };
 
@@ -71,6 +71,8 @@ function BookingForm({quest}: bookingFormProps):JSX.Element {
     })).unwrap().then(
       () => {
         navigate(AppRoute.MyQuests);
+
+        dispatch(fetchReservationsAction());
       },
       () => dispatch(displayError(WarningMessage.SendError))
     );

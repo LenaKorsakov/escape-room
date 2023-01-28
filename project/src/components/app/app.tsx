@@ -3,7 +3,7 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import MainPage from '../../pages/main-page/main-page';
 import BookingPage from '../../pages/booking-page/booking-page';
 import QuestPage from '../../pages/quest-page/quest-page';
-import MyQuestsPage from '../../pages/my-quests-page/my-quests-page';
+import ReservationsPage from '../../pages/reservations-page/reservations-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import LoginPage from '../../pages/login-page/login-page';
 import ContactsPage from '../../pages/contacts-page/contacts-page';
@@ -52,7 +52,7 @@ function App(): JSX.Element {
           path={AppRoute.MyQuests}
           element={
             <PrivateRouter aurhorizationStatus={authorizationStatus}>
-              <MyQuestsPage/>
+              <ReservationsPage/>
             </PrivateRouter>
           }
         >

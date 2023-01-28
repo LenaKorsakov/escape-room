@@ -2,12 +2,12 @@ import Filter from '../../components/filter/filter';
 import Header from '../../components/header/header';
 import QuestCard from '../../components/quest-card/quest-card';
 import LoadingPage from '../loading-page/loading-page';
+import EmptyPlug from '../../components/empty-plug/empty-plug';
 
 import { useAppSelector } from '../../hooks';
 import { getAllQuests, isQuestsLoading } from '../../store/quests-process/quests-process-selectors';
 import { getFilterOptionByLevel, getFilterOptionByType } from '../../store/filter-process/filter-process-selectors';
 import { filterQuestByLevel, filterQuestByType } from '../../utiles/filter-predicates';
-import EmptyPlug from '../../components/map/empty-plug/empty-plug';
 import { EmptyPlugText } from '../../const/empty-plug-text';
 
 function MainPage():JSX.Element {
@@ -42,7 +42,7 @@ function MainPage():JSX.Element {
             <h2 className="title visually-hidden">Выберите квест</h2>
             <div className="cards-grid">
               { filteredQuests.length ?
-                filteredQuests.map((quest) => (
+                filteredQuests?.map((quest) => (
                   <QuestCard
                     key={quest.id}
                     quest={quest}

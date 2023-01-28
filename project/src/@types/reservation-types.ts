@@ -1,5 +1,6 @@
 import { Date } from '../const/date';
 import { QuestPreview } from './quest-types';
+import { Location } from './quest-types';
 
 export type BookingInfo = {
 date: Date;
@@ -12,7 +13,7 @@ locationId: number;
 questId: number;
 }
 
-type Reservation = {
+export type Reservation = {
     date: Date;
     time: string;
     contactPerson: string;

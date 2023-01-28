@@ -5,7 +5,7 @@ import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import App from './components/app/app';
-import { checkAuthorizationStatusAction, fetchQuestPreviewsAction } from './store/api-actions';
+import { checkAuthorizationStatusAction, fetchQuestPreviewsAction, fetchReservationsAction } from './store/api-actions';
 import { store } from './store/index';
 import { changeLevel } from './store/filter-process/filter-process';
 import { changeType } from './store/filter-process/filter-process';
@@ -18,6 +18,7 @@ const root = ReactDOM.createRoot(
 
 store.dispatch(fetchQuestPreviewsAction());
 store.dispatch(checkAuthorizationStatusAction());
+store.dispatch(fetchReservationsAction());
 
 store.dispatch(changeLevel(QUEST_BY_LEVEL_DEFAULT));
 store.dispatch(changeType(QUEST_BY_TYPE_DEFAULT));

@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const/app-route';
 import { LoginButtonText } from '../../const/login-button-text';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { loginAction } from '../../store/api-actions';
+import { fetchReservationsAction, loginAction } from '../../store/api-actions';
 import { getIsLoginLoading } from '../../store/user-process/user-process-selectors';
 import { displayError } from '../../store/actions';
 import { WarningMessage } from '../../const/warning-message';
@@ -38,6 +38,8 @@ function LoginForm(): JSX.Element {
               const { pathname } = (location.state as LocationState).from;
 
               navigate(pathname);
+
+              dispatch(fetchReservationsAction());
             } else {
 
               navigate(AppRoute.Main);
