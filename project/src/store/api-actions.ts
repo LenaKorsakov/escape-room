@@ -7,7 +7,7 @@ import { Action } from '../const/action';
 
 import { QuestPreview, Quest, QuestInfo } from '../@types/quest-types';
 import { UserData, AuthData, AppDispatch, State } from '../@types/store-types';
-import { BookingInfo } from '../@types/reservation-types';
+import { BookingInfo, ReservationsData } from '../@types/reservation-types';
 
 export const fetchQuestPreviewsAction = createAsyncThunk<
   QuestPreview[],
@@ -119,3 +119,34 @@ export const checkAuthorizationStatusAction = createAsyncThunk<
         return data;
       }
     );
+
+
+export const fetchReservationsAction = createAsyncThunk<
+ReservationsData,
+undefined,
+{
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}
+>(Action.FetchReservations,
+  async (_arg, {extra: api}) => {
+    const { data } = await api.get<ReservationsData>(ApiRoutes.Reservation);
+
+    return data;
+  }
+);
+
+export const deleteReservationAction = createAsyncThunk<
+void,
+number,
+{
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}
+>(Action.FetchReservations,
+  async (id, {extra: api}) => {
+    await api.delete(`${ApiRoutes.Reservation}/${id}`);
+  }
+);

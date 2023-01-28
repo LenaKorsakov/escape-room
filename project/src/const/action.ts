@@ -5,7 +5,7 @@ export const Action = {
   FetchQuestBookingInfoById: 'booking/fetchQuestBookingInfoById',
   SendBookingInfo: 'booking/sendBookingInfo',
 
-  FetchUserReservations: 'reservation/fetchUserReservations',
+  FetchReservations: 'reservation/fetchReservations',
   DeleteReservationById: 'reservation/deleteReservationById',
 
   CheckAuthorizationStatus: 'user/checkAuthorizationStatus',
