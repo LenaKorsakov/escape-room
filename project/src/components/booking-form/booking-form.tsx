@@ -1,9 +1,10 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import DatePickerOption from './date-picker-option';
 
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchReservationsAction, sendBookingInfoAction } from '../../store/api-actions';
 import { displayError } from '../../store/actions';
 
@@ -13,13 +14,29 @@ import { BookingInfo } from '../../@types/reservation-types';
 import { DateRaw } from '../../const/date';
 import { AppRoute } from '../../const/app-route';
 import { WarningMessage } from '../../const/warning-message';
+import { NAME_MAX_LENGTH, NAME_MIN_LENGTH, ValidationMessage } from '../../const/validation-messages';
+import { getSelectedLocation } from '../../store/booking-process/booking-process-selectors';
 
 type bookingFormProps = {
   quest: QuestInfo;
+  peopleMinMax: [number,number];
 }
-function BookingForm({quest}: bookingFormProps):JSX.Element {
+function BookingForm({quest, peopleMinMax}: bookingFormProps):JSX.Element {
   const { slots, id } = quest;
   const { today, tomorrow } = slots;
+  const [peopleMin, peopleMax] = peopleMinMax;
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const selectedLocation = useAppSelector(getSelectedLocation);
+
+  const {
+    register,
+    formState: {errors, isValid},
+    reset
+  } = useForm({
+    mode: 'onBlur'
+  });
 
   const initialBookingInfoState: BookingInfo = {
     date: DateRaw.TODAY,
@@ -28,7 +45,7 @@ function BookingForm({quest}: bookingFormProps):JSX.Element {
     phone: '',
     withChildren: false,
     peopleCount: 0,
-    locationId: 1,
+    locationId: 0,
     questId: id
   };
 
@@ -59,17 +76,17 @@ function BookingForm({quest}: bookingFormProps):JSX.Element {
     });
   };
 
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
   const handleFormSubmit = (event: FormEvent) => {
     event.preventDefault();
 
     dispatch(sendBookingInfoAction({
       ...formData,
-      peopleCount: +formData.peopleCount
+      peopleCount: +formData.peopleCount,
+      locationId: selectedLocation.id
     })).unwrap().then(
       () => {
+        reset();
+
         navigate(AppRoute.MyQuests);
 
         dispatch(fetchReservationsAction());
@@ -129,13 +146,21 @@ function BookingForm({quest}: bookingFormProps):JSX.Element {
           <input
             type="text"
             id="name"
-            name="contactPerson"
             placeholder="Имя"
-            onChange={handleInputChange}
             value={formData.contactPerson}
-            required
-            pattern="[А-Яа-яЁёA-Za-z'- ]{1,}"
+            {...register('contactPerson', {
+              required: ValidationMessage.RequiredDate,
+              pattern: {
+                value: /[А-Яа-яЁёA-Za-z]{1,}/,
+                message: ValidationMessage.ValidateUserName
+              },
+              validate: {
+                value: (value: string) => value.trim().length >= NAME_MIN_LENGTH && value.trim().length <= NAME_MAX_LENGTH
+              },
+              onChange: handleInputChange
+            })}
           />
+          {errors.contactPerson && <><br/><span role="alert">{errors.contactPerson?.message?.toString() || ValidationMessage.ValidateUserNameLength}</span></>}
         </div>
         <div className="custom-input booking-form__input">
           <label className="custom-input__label" htmlFor="tel">
@@ -144,13 +169,19 @@ function BookingForm({quest}: bookingFormProps):JSX.Element {
           <input
             type="tel"
             id="tel"
-            name="phone"
             placeholder="Телефон"
-            onChange={handleInputChange}
             value={formData.phone}
-            required
-            pattern="[0-9]{10,}"
+
+            {...register('phone', {
+              required: ValidationMessage.RequiredField,
+              pattern: {
+                value: /((\+7)[- ]?)?(\(?\d{3}\)?[- ]?)?[\d\- ]{7,10}/,
+                message: ValidationMessage.ValidatePhone
+              },
+              onChange: handleInputChange
+            })}
           />
+          {errors.phone && <><br/><span role="alert">{errors.phone.message?.toString()}</span></>}
         </div>
         <div className="custom-input booking-form__input">
           <label className="custom-input__label" htmlFor="person">
@@ -159,12 +190,23 @@ function BookingForm({quest}: bookingFormProps):JSX.Element {
           <input
             type="number"
             id="person"
-            name="peopleCount"
             placeholder="Количество участников"
-            onChange={handleInputChange}
             value={formData.peopleCount}
-            required
+
+            {...register('peopleCount', {
+              required: ValidationMessage.RequiredField,
+              min: {
+                value: peopleMin,
+                message: ValidationMessage.ValidateParticipantsMin
+              },
+              max: {
+                value: peopleMax,
+                message: ValidationMessage.ValidateParticipantsMax
+              },
+              onChange: handleInputChange
+            })}
           />
+          {errors.peopleCount && <><br/><span role="alert">{errors.peopleCount.message?.toString()}</span></>}
         </div>
         <label className="custom-checkbox booking-form__checkbox booking-form__checkbox--children">
           <input
@@ -186,6 +228,7 @@ function BookingForm({quest}: bookingFormProps):JSX.Element {
       <button
         className="btn btn--accent btn--cta booking-form__submit"
         type="submit"
+        disabled={!isValid}
       >
             Забронировать
       </button>

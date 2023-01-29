@@ -1,6 +1,6 @@
 import { AuthorizationStatus } from '../const/authorization-status';
 import { store } from '../store/index';
-import { Quest, QuestInfo, QuestPreview } from './quest-types';
+import { Location, Quest, QuestInfo, QuestPreview } from './quest-types';
 import { ReservationsData } from './reservation-types';
 
 export type State = ReturnType<typeof store.getState>;
@@ -31,6 +31,7 @@ export type QuestsProcess = {
 
 export type BookingProcess = {
   bookedQuest: QuestInfo;
+  selectedLocation: Location;
 }
 
 export type ReservationProcess = {

@@ -28,7 +28,7 @@ export type QuestInfo = {
 export type Location = {
   id: number;
   address: string;
-  coords: [number, number];
+  coords: Coordinates;
 }
 
 type TimeSlot = {
@@ -36,3 +36,4 @@ type TimeSlot = {
   isAvailable: boolean;
 }
 
+export type Coordinates = [number, number];

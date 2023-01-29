@@ -18,6 +18,8 @@ import { getSelectedQuest } from '../../store/quests-process/quests-process-sele
 
 function BookingPage():JSX.Element {
   const selectedQuest = useAppSelector(getSelectedQuest);
+  const {peopleMinMax} = selectedQuest;
+
   const dispatch = useAppDispatch();
 
   const [bookedQuest, setBookedQuest] = useState<QuestInfo|null>(null);
@@ -55,7 +57,10 @@ function BookingPage():JSX.Element {
               </p>
             </div>
             <BookingMap quest={bookedQuest}/>
-            <BookingForm quest={bookedQuest}/>
+            <BookingForm
+              quest={bookedQuest}
+              peopleMinMax={peopleMinMax}
+            />
           </div>
         </main>
       </>
