@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -9,7 +9,6 @@ import { IconrUrl, IconSize } from '../../const/icon-url';
 import { CENTER_COORDINATES } from '../../const/coordinates';
 import { useAppDispatch } from '../../hooks';
 import { changeLocation } from '../../store/booking-process/booking-process';
-
 
 const defaultIcon = new Icon({
   iconUrl: IconrUrl.Default,
@@ -78,4 +77,4 @@ function BookingMap({quest}: bookingMapProps):JSX.Element {
   );
 }
 
-export default BookingMap;
+export default memo(BookingMap);

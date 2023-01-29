@@ -2,10 +2,11 @@ import Header from '../../components/header/header';
 import BackgroundPictureEmpty from '../../components/background-picture-empty/background-picture-empty';
 import ReservationCard from '../../components/reservation-card/reservation-card';
 import LoadingPage from '../loading-page/loading-page';
+import EmptyPlug from '../../components/empty-plug/empty-plug';
 
 import { useAppSelector } from '../../hooks';
 import { getAllReservations, isReservationsLoading } from '../../store/reservation-process/reservation-process-selectors';
-import EmptyPlug from '../../components/empty-plug/empty-plug';
+
 import { EmptyPlugText } from '../../const/empty-plug-text';
 
 function ReservationsPage():JSX.Element {

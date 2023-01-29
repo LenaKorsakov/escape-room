@@ -7,11 +7,12 @@ import ReservationsPage from '../../pages/reservations-page/reservations-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import LoginPage from '../../pages/login-page/login-page';
 import ContactsPage from '../../pages/contacts-page/contacts-page';
+import PrivateRouter from '../private-router/private-router';
+
+import { getAuthorizationStatus } from '../../store/user-process/user-process-selectors';
 
 import { AppRoute } from '../../const/app-route';
-import PrivateRouter from '../private-router/private-router';
 import { useAppSelector } from '../../hooks';
-import { getAuthorizationStatus } from '../../store/user-process/user-process-selectors';
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);

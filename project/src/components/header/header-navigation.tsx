@@ -1,8 +1,10 @@
-import { AppRoute } from '../../const/app-route';
 import { NavLink } from 'react-router-dom';
 import { useContext } from 'react';
+
 import { HeaderContext } from './header';
+
 import { AuthorizationStatus } from '../../const/authorization-status';
+import { AppRoute } from '../../const/app-route';
 
 function HeaderNavigation(): JSX.Element {
   const authorizationStatus = useContext(HeaderContext);

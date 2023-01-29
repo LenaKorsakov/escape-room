@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { memo } from 'react';
 
 import { useAppDispatch } from '../../hooks';
 import { displayError } from '../../store/actions';
@@ -82,4 +83,4 @@ function ReservationCard({reservation}: ReservationCardProps): JSX.Element {
   );
 }
 
-export default ReservationCard;
+export default memo(ReservationCard);

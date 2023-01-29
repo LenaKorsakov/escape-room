@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState, memo } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,6 +30,9 @@ type bookingFormProps = {
   quest: QuestInfo;
   peopleMinMax: [number,number];
 }
+
+const phoneRegex = /^((\+7)[ ])(\(\d{3}\)[ ])\d{3}[-]\d{2}[-]\d{2}$/;
+const userNameRegex = /^[А-Яа-яЁёA-Za-z]{1,}$/;
 
 function BookingForm({quest, peopleMinMax}: bookingFormProps):JSX.Element {
   const { slots, id } = quest;
@@ -159,7 +162,7 @@ function BookingForm({quest, peopleMinMax}: bookingFormProps):JSX.Element {
             {...register('contactPerson', {
               required: ValidationMessage.RequiredDate,
               pattern: {
-                value: /[А-Яа-яЁёA-Za-z]{1,}/,
+                value: userNameRegex,
                 message: ValidationMessage.ValidateUserName
               },
               validate: {
@@ -183,7 +186,7 @@ function BookingForm({quest, peopleMinMax}: bookingFormProps):JSX.Element {
             {...register('phone', {
               required: ValidationMessage.RequiredField,
               pattern: {
-                value: /^((\+7)[ ])(\(\d{3}\)[ ])\d{3}[-]\d{2}[-]\d{2}$/,
+                value: phoneRegex,
                 message: ValidationMessage.ValidatePhone
               },
               onChange: handleInputChange
@@ -263,4 +266,4 @@ function BookingForm({quest, peopleMinMax}: bookingFormProps):JSX.Element {
   );
 }
 
-export default BookingForm;
+export default memo(BookingForm);

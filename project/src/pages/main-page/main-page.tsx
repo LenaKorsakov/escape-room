@@ -7,6 +7,7 @@ import EmptyPlug from '../../components/empty-plug/empty-plug';
 import { useAppSelector } from '../../hooks';
 import { getAllQuests, isQuestsLoading } from '../../store/quests-process/quests-process-selectors';
 import { getFilterOptionByLevel, getFilterOptionByType } from '../../store/filter-process/filter-process-selectors';
+
 import { filterQuestByLevel, filterQuestByType } from '../../utiles/filter-predicates';
 import { EmptyPlugText } from '../../const/empty-plug-text';
 

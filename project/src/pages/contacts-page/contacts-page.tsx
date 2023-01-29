@@ -1,6 +1,7 @@
 import BackgroundPictureEmpty from '../../components/background-picture-empty/background-picture-empty';
 import Header from '../../components/header/header';
 import Map from '../../components/map/map';
+
 import { OFFICE_COORDINATES } from '../../const/coordinates';
 
 function ContactsPage():JSX.Element {

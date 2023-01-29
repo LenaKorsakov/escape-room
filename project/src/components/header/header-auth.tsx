@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const/app-route';
+
+import HeaderNavigation from './header-navigation';
+
 import { useAppDispatch } from '../../hooks';
 import { logoutAction } from '../../store/api-actions';
-import HeaderNavigation from './header-navigation';
+
+import { AppRoute } from '../../const/app-route';
 
 function HeaderAuth(): JSX.Element {
   const dispatch = useAppDispatch();

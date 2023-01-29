@@ -3,13 +3,16 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import Header from '../../components/header/header';
-import { AppRoute } from '../../const/app-route';
-import { store } from '../../store';
-import { fetchQuestByIdAction } from '../../store/api-actions';
-import { Quest } from '../../@types/quest-types';
 import LoadingPage from '../loading-page/loading-page';
-import { useAppDispatch } from '../../hooks';
+
+import { store } from '../../store';
 import { displayError } from '../../store/actions';
+import { fetchQuestByIdAction } from '../../store/api-actions';
+import { useAppDispatch } from '../../hooks';
+
+import { Quest } from '../../@types/quest-types';
+
+import { AppRoute } from '../../const/app-route';
 import { WarningMessage } from '../../const/warning-message';
 
 function QuestPage(): JSX.Element {

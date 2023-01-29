@@ -11,10 +11,10 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { store } from '../../store';
 import { displayError } from '../../store/actions';
 import { fetchQuestBookingInfoByIdAction } from '../../store/api-actions';
+import { getSelectedQuest } from '../../store/quests-process/quests-process-selectors';
 
 import { WarningMessage } from '../../const/warning-message';
 import { QuestInfo } from '../../@types/quest-types';
-import { getSelectedQuest } from '../../store/quests-process/quests-process-selectors';
 
 function BookingPage():JSX.Element {
   const selectedQuest = useAppSelector(getSelectedQuest);
