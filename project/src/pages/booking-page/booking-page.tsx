@@ -23,8 +23,6 @@ function BookingPage():JSX.Element {
   const dispatch = useAppDispatch();
 
   const [bookedQuest, setBookedQuest] = useState<QuestInfo|null>(null);
-  // eslint-disable-next-line no-console
-  console.log(bookedQuest);
 
   const {id} = useParams() as {id: string};
 

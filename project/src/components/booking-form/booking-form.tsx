@@ -15,10 +15,22 @@ import { AppRoute } from '../../const/app-route';
 import { WarningMessage } from '../../const/warning-message';
 import { NAME_MAX_LENGTH, NAME_MIN_LENGTH, ValidationMessage } from '../../const/validation-messages';
 
+const initialBookingInfoState: BookingInfo = {
+  date: DateRaw.TODAY,
+  time: '',
+  contactPerson: '',
+  phone: '',
+  withChildren: false,
+  peopleCount: 0,
+  locationId: 0,
+  questId: 0
+};
+
 type bookingFormProps = {
   quest: QuestInfo;
   peopleMinMax: [number,number];
 }
+
 function BookingForm({quest, peopleMinMax}: bookingFormProps):JSX.Element {
   const { slots, id } = quest;
   const { today, tomorrow } = slots;
@@ -35,17 +47,6 @@ function BookingForm({quest, peopleMinMax}: bookingFormProps):JSX.Element {
   } = useForm({
     mode: 'onBlur'
   });
-
-  const initialBookingInfoState: BookingInfo = {
-    date: DateRaw.TODAY,
-    time: '',
-    contactPerson: '',
-    phone: '',
-    withChildren: false,
-    peopleCount: 0,
-    locationId: 0,
-    questId: id
-  };
 
   const [formData, setFormData] = useState<BookingInfo>(initialBookingInfoState);
 
@@ -80,7 +81,8 @@ function BookingForm({quest, peopleMinMax}: bookingFormProps):JSX.Element {
     dispatch(sendBookingInfoAction({
       ...formData,
       peopleCount: +formData.peopleCount,
-      locationId: selectedLocation.id
+      locationId: selectedLocation.id,
+      questId: id
     })).unwrap().then(
       () => {
         reset();

@@ -19,7 +19,7 @@ function PrivateRouter({children, aurhorizationStatus}: PrivateRouterProps): JSX
     if(aurhorizationStatus === AuthorizationStatus.NoAuth) {
       dispatch(displayError(WarningMessage.NoAuthWarning));
     }
-  }, [aurhorizationStatus, dispatch]);//зачем этот хук
+  }, [aurhorizationStatus, dispatch]);
 
   return (
     (aurhorizationStatus === AuthorizationStatus.NoAuth)

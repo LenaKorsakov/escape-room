@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { memo } from 'react';
+
 import { QuestPreview } from '../../@types/quest-types';
 import { AppRoute } from '../../const/app-route';
 import { capitalizeFirstLetter, translateLevel } from '../../utiles/format';
@@ -53,4 +55,4 @@ function QuestCard({quest}: QuestCardProps): JSX.Element {
   );
 }
 
-export default QuestCard;
+export default memo(QuestCard);

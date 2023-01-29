@@ -1,12 +1,19 @@
 import { FormEvent, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AppRoute } from '../../const/app-route';
-import { LoginButtonText } from '../../const/login-button-text';
+import { useForm } from 'react-hook-form';
+
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchReservationsAction, loginAction } from '../../store/api-actions';
 import { getIsLoginLoading } from '../../store/user-process/user-process-selectors';
 import { displayError } from '../../store/actions';
+
+import { AppRoute } from '../../const/app-route';
+import { LoginButtonText } from '../../const/login-button-text';
 import { WarningMessage } from '../../const/warning-message';
+import { ValidationMessage } from '../../const/validation-messages';
+
+const passwordRegex = /^(?=.*?[A-Za-z])(?=.*?[0-9]).{3,}$/;
+const loginRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 type LocationState = {
   from: {
@@ -15,8 +22,30 @@ type LocationState = {
 }
 
 function LoginForm(): JSX.Element {
+  const {
+    register,
+    formState: {errors, isValid},
+  } = useForm({
+    mode: 'onBlur'
+  });
+
   const emailRef = useRef<HTMLInputElement | null>(null);
+  const { ref: emailRefCallback, ...registerEmailRest } = register('email', {
+    required: ValidationMessage.RequiredField,
+    pattern: {
+      value: loginRegex,
+      message: ValidationMessage.ValidateEmail
+    },
+  });
+
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const { ref: passwordRefCallback, ...registerPasswordRest } = register('password', {
+    required: ValidationMessage.RequiredField,
+    pattern: {
+      value: passwordRegex,
+      message: ValidationMessage.ValidatePassword
+    },
+  });
 
   const isLoginLoading = useAppSelector(getIsLoginLoading);
 
@@ -67,31 +96,38 @@ function LoginForm(): JSX.Element {
                     E&nbsp;–&nbsp;mail
               </label>
               <input
-                ref={emailRef}
                 type="email"
                 id="email"
-                name="email"
                 placeholder="Адрес электронной почты"
-                required
+                ref={((e) => {
+                  emailRefCallback(e);
+                  emailRef.current = e;
+                })}
+                {...registerEmailRest}
               />
+              {errors.email && <><br/><span role="alert">{errors.email?.message?.toString()}</span></>}
             </div>
             <div className="custom-input login-form__input">
               <label className="custom-input__label" htmlFor="password">
                     Пароль
               </label>
               <input
-                ref={passwordRef}
                 type="password"
                 id="password"
-                name="password"
                 placeholder="Пароль"
-                required
+                ref={(e) => {
+                  passwordRefCallback(e);
+                  passwordRef.current = e;
+                }}
+                {...registerPasswordRest}
               />
+              {errors.password && <><br/><span role="alert">{errors.password?.message?.toString()}</span></>}
             </div>
           </div>
           <button
             className="btn btn--accent btn--general login-form__submit"
             type="submit"
+            disabled={!isValid}
           >
             {isLoginLoading ? LoginButtonText.Clicked : LoginButtonText.Default}
           </button>
@@ -100,8 +136,7 @@ function LoginForm(): JSX.Element {
           <input
             type="checkbox"
             id="id-order-agreement"
-            name="user-agreement"
-            required
+            {...register('user-agreement',{ required: true})}
           />
           <span className="custom-checkbox__icon">
             <svg width={20} height={17} aria-hidden="true">
