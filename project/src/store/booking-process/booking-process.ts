@@ -6,7 +6,8 @@ import { fetchQuestBookingInfoByIdAction } from '../api-actions';
 
 const initialState: BookingProcess = {
   bookedQuest: {} as QuestInfo,
-  selectedLocation: {} as Location
+  selectedLocation: {} as Location,
+  isValid: false
 };
 
 export const bookingProcess = createSlice({
@@ -15,7 +16,8 @@ export const bookingProcess = createSlice({
   reducers: {
     changeLocation: (state, action: PayloadAction<Location>) => {
       state.selectedLocation = action.payload;
-    },},
+    }
+  },
   extraReducers(builder){
     builder
       .addCase(fetchQuestBookingInfoByIdAction.fulfilled, (state, action) =>{

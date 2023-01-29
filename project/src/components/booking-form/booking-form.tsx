@@ -2,11 +2,10 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import DatePickerOption from './date-picker-option';
-
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchReservationsAction, sendBookingInfoAction } from '../../store/api-actions';
 import { displayError } from '../../store/actions';
+import { getSelectedLocation } from '../../store/booking-process/booking-process-selectors';
 
 import { QuestInfo } from '../../@types/quest-types';
 import { BookingInfo } from '../../@types/reservation-types';
@@ -15,7 +14,6 @@ import { DateRaw } from '../../const/date';
 import { AppRoute } from '../../const/app-route';
 import { WarningMessage } from '../../const/warning-message';
 import { NAME_MAX_LENGTH, NAME_MIN_LENGTH, ValidationMessage } from '../../const/validation-messages';
-import { getSelectedLocation } from '../../store/booking-process/booking-process-selectors';
 
 type bookingFormProps = {
   quest: QuestInfo;
@@ -111,12 +109,16 @@ function BookingForm({quest, peopleMinMax}: bookingFormProps):JSX.Element {
             onChange={handleTodayDatePickerOptionChange}
           >
             {today.map(({time, isAvailable}) => (
-              <DatePickerOption
-                time={time}
-                isAvailable={isAvailable}
-                day={DateRaw.TODAY}
-                key={`${DateRaw.TODAY}-${time}`}
-              />
+              <label className="custom-radio booking-form__date" key={`${DateRaw.TODAY}-${time}`}>
+                <input
+                  type="radio"
+                  id={DateRaw.TODAY.concat(time)}
+                  value={time}
+                  disabled={!isAvailable}
+                  {...register('date',{ required: true})}
+                />
+                <span className="custom-radio__label">{time}</span>
+              </label>
             ))}
           </div>
         </fieldset>
@@ -127,12 +129,16 @@ function BookingForm({quest, peopleMinMax}: bookingFormProps):JSX.Element {
             onChange={handleTommorowDatePickerOptionChange}
           >
             {tomorrow.map(({time, isAvailable}) => (
-              <DatePickerOption
-                time={time}
-                isAvailable={isAvailable}
-                day={DateRaw.TOMORROW}
-                key={`${DateRaw.TOMORROW}-${time}`}
-              />
+              <label className="custom-radio booking-form__date" key={`${DateRaw.TOMORROW}-${time}`}>
+                <input
+                  type="radio"
+                  id={DateRaw.TOMORROW.concat(time)}
+                  value={time}
+                  disabled={!isAvailable}
+                  {...register('date',{ required: true})}
+                />
+                <span className="custom-radio__label">{time}</span>
+              </label>
             ))}
           </div>
         </fieldset>
@@ -175,7 +181,7 @@ function BookingForm({quest, peopleMinMax}: bookingFormProps):JSX.Element {
             {...register('phone', {
               required: ValidationMessage.RequiredField,
               pattern: {
-                value: /((\+7)[- ]?)?(\(?\d{3}\)?[- ]?)?[\d\- ]{7,10}/,
+                value: /^((\+7)[ ])(\(\d{3}\)[ ])\d{3}[-]\d{2}[-]\d{2}$/,
                 message: ValidationMessage.ValidatePhone
               },
               onChange: handleInputChange
@@ -228,7 +234,7 @@ function BookingForm({quest, peopleMinMax}: bookingFormProps):JSX.Element {
       <button
         className="btn btn--accent btn--cta booking-form__submit"
         type="submit"
-        disabled={!isValid}
+        disabled={ !isValid }
       >
             Забронировать
       </button>
@@ -236,8 +242,7 @@ function BookingForm({quest, peopleMinMax}: bookingFormProps):JSX.Element {
         <input
           type="checkbox"
           id="id-order-agreement"
-          name="user-agreement"
-          required
+          {...register('user-agreement',{ required: true})}
         />
         <span className="custom-checkbox__icon">
           <svg width={20} height={17} aria-hidden="true">

@@ -32,6 +32,7 @@ export type QuestsProcess = {
 export type BookingProcess = {
   bookedQuest: QuestInfo;
   selectedLocation: Location;
+  isValid: boolean;
 }
 
 export type ReservationProcess = {
