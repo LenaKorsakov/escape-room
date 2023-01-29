@@ -2,10 +2,11 @@ import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
 import { IconrUrl, IconSize } from '../../const/icon-url';
+import { Coordinates } from '../../@types/quest-types';
 
 
 type MapProps = {
-coordinates: [number, number];
+coordinates: Coordinates;
 }
 
 const defaultIcon = new Icon({
