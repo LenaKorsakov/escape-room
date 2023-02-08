@@ -6,7 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import { Location, QuestInfo } from '../../@types/quest-types';
 
 import { IconrUrl, IconSize } from '../../const/icon-url';
-import { CENTER_COORDINATES } from '../../const/coordinates';
+import { CENTER_COORDINATES, ZOOM } from '../../const/coordinates';
 import { useAppDispatch } from '../../hooks';
 import { changeLocation } from '../../store/booking-process/booking-process';
 
@@ -45,7 +45,7 @@ function BookingMap({quest}: bookingMapProps):JSX.Element {
           <div className="map__container">
             <MapContainer
               center={CENTER_COORDINATES}
-              zoom={10}
+              zoom={ZOOM}
               style={{ height: '100%', width: '100%' }}
             >
               <TileLayer

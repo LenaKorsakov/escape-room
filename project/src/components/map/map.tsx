@@ -3,6 +3,7 @@ import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
 import { IconrUrl, IconSize } from '../../const/icon-url';
 import { Coordinates } from '../../@types/quest-types';
+import { ZOOM } from '../../const/coordinates';
 
 type MapProps = {
 coordinates: Coordinates;
@@ -19,7 +20,7 @@ function Map({coordinates}: MapProps): JSX.Element {
   return(
     <MapContainer
       center={coordinates}
-      zoom={15}
+      zoom={ZOOM}
       style={{ height: '100%', width: '100%' }}
     >
       <TileLayer

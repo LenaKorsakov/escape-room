@@ -15,6 +15,11 @@ import { AppRoute } from '../../const/app-route';
 import { WarningMessage } from '../../const/warning-message';
 import { NAME_MAX_LENGTH, NAME_MIN_LENGTH, ValidationMessage } from '../../const/validation-messages';
 
+type bookingFormProps = {
+  quest: QuestInfo;
+  peopleMinMax: [number,number];
+}
+
 const initialBookingInfoState: BookingInfo = {
   date: DateRaw.TODAY,
   time: '',
@@ -26,13 +31,8 @@ const initialBookingInfoState: BookingInfo = {
   questId: 0
 };
 
-type bookingFormProps = {
-  quest: QuestInfo;
-  peopleMinMax: [number,number];
-}
-
-const phoneRegex = /^((\+7)[ ])(\(\d{3}\)[ ])\d{3}[-]\d{2}[-]\d{2}$/;
-const userNameRegex = /^[А-Яа-яЁёA-Za-z]{1,}$/;
+const PHONE_REGEX = /^((\+7)[ ])(\(\d{3}\)[ ])\d{3}[-]\d{2}[-]\d{2}$/;
+const USER_NAME_REGEX = /^[А-Яа-яЁёA-Za-z]{1,}$/;
 
 function BookingForm({quest, peopleMinMax}: bookingFormProps):JSX.Element {
   const { slots, id } = quest;
@@ -162,7 +162,7 @@ function BookingForm({quest, peopleMinMax}: bookingFormProps):JSX.Element {
             {...register('contactPerson', {
               required: ValidationMessage.RequiredDate,
               pattern: {
-                value: userNameRegex,
+                value: USER_NAME_REGEX,
                 message: ValidationMessage.ValidateUserName
               },
               validate: {
@@ -186,7 +186,7 @@ function BookingForm({quest, peopleMinMax}: bookingFormProps):JSX.Element {
             {...register('phone', {
               required: ValidationMessage.RequiredField,
               pattern: {
-                value: phoneRegex,
+                value: PHONE_REGEX,
                 message: ValidationMessage.ValidatePhone
               },
               onChange: handleInputChange
