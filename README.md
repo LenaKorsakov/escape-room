@@ -1,5 +1,5 @@
 # Escape-room
-React application for searching and booking quests in Sunset St. Petersburg
+React application for searching and booking quests in St. Petersburg
 
 ## Description
 //Here is a description with pictures.
