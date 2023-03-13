@@ -20,7 +20,7 @@ To successfully book the quest, the user only needs to click on the big orange b
 
 When the user successfully registers, he will be redirected to a page with a very convenient booking form!
 This form provides a choice of the quest location by clicking on the marker on the interactive map, the choice of the quest time by clicking on the checkbox. In addition, the user will need to leave their contact information, but be very careful, because the criteria for valid entered data is quite strict :)
-![Booking-screenshot](https://github.com/LenaKorsakov/escape-room/blob/main/screens/boolking-screen.png)
+![Booking-screenshot](https://github.com/LenaKorsakov/escape-room/blob/main/screens/booking-screen.png)
 
 Another private page, which is only available to registered users, is the page with the list of bookings. On it, the user can quietly see his upcoming events and, if necessary, cancel the quest.
 ![My-quests-screenshot](https://github.com/LenaKorsakov/escape-room/blob/main/screens/my-quests.png)
