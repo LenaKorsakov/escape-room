@@ -1,8 +1,10 @@
-# Escape-room
-React application for searching and booking quests in St. Petersburg
-
+## Escape-room
+# React application for searching and booking entertainment quests in St. Petersburg.
+This application contains several screens: the main page with the list of available entertainment quests, the page with additional information about each quest, the page with the form for signing up for the application, the page for booking the quest, and the page with the list of booked quests.
 ## Description
-//Here is a description with pictures.
+This application contains several screens: the main page with the list of available entertainment quests, the page with additional information about each quest, the page with the form for signing up for the application, the page for booking the quest, and the page with the list of booked quests.
+
+![Main-screenshot](https://github.com/LenaKorsakov/six-cities/blob/master/project/screenshots/main-screenshot.png)
 
 ## Stack
 - ReactJS,
@@ -10,7 +12,7 @@ React application for searching and booking quests in St. Petersburg
 - React Router Dom,
 - Redux Toolkit,
 - Axios
--Leaflet-map
+- Leaflet-map
 
 ## Demo site
 https://escape-room-korsakova.vercel.app/
@@ -19,10 +21,10 @@ https://escape-room-korsakova.vercel.app/
 
 - Clone repository:
 ```bash
-git clone git@github.com:LenaKorsakov/escape-room.git
+git clone git@github.com:LenaKorsakov/six-city.git
 ```
 
-## project
+- Install dependencies repository:
 
 ```bash
 npm install
@@ -32,4 +34,9 @@ npm install
 
 ```bash
 npm start
+```
+
+- Check tests
+```bash
+npm test
 ```
