@@ -1,35 +1,35 @@
-Учебный проект грейдирования Профессии  «React-разработчик » Escape Room
+# Escape-room
+React application for searching and booking quests in St. Petersburg
 
-Вёртска проекта находится в папке `build`
-В файле VALIDATION пример работы с библиотекой `React Hook Form` необходимой для валидации в проекте
+## Description
+//Here is a description with pictures.
 
-Создадать заготовку проекта можно при помощи CRA (Create React App). Это официальный инструмент для подготовки
-основы для проектов.
+## Stack
+- ReactJS,
+- Typescript,
+- React Router Dom,
+- Redux Toolkit,
+- Axios
+-Leaflet-map
 
-Мы воспользуемся шаблоном @htmlacademy/cra-template-typescript
-(https://www.npmjs.com/package/@htmlacademy/cra-template-typescript).
+## Demo site
+https://escape-room-korsakova.vercel.app/
 
-Для создания проекта достаточно ввести одну единственную команду:
-`npx create-react-app project --template @htmlacademy/cra-template-typescript`.
+## How to run app:
 
-## Структура проекта 
+- Clone repository:
+```bash
+git clone git@github.com:LenaKorsakov/escape-room.git
+```
 
 ## project
 
+```bash
+npm install
+```
 
----
+- Run application:
 
-_Не удаляйте и не изменяйте папки и файлы:_
-_`.editorconfig`, `.gitattributes`, `.gitignore`, `package.json`._
-
----
-
-### public
-
-Директория для размещения статичных ресурсов (шрифты, стили, изображения и так далее). Корневая директория проекта.
-
-**Обратите внимание**, файл `Readme.md`, в директории `public`, содержит описание подготовительного процесса, который вам необходимо выполнить перед тем, как приступать к работе над проектом.
-
-### src
-
-В директории размещаются исходный код проекта: компоненты, файлы с тестами, модули и так далее. Структура директории `src` может быть произвольной.
+```bash
+npm start
+```
