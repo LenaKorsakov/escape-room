@@ -1,8 +1,8 @@
 export enum ApiRoutes {
-  Quests = '/escape-room/quest',
-  Reservation ='/escape-room/reservation',
-  Login = '/escape-room/login',
-  Logout = '/escape-room/logout'
+  Quests = '/quest',
+  Reservation ='/reservation',
+  Login = '/login',
+  Logout = '/logout'
 }
 
 

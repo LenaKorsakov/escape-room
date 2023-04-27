@@ -5,7 +5,7 @@ import { StatusCodes } from 'http-status-codes';
 import { getToken } from './token';
 import { WarningMessage } from '../const/warning-message';
 
-const BACKEND_URL = 'https://grading.design.pages.academy';
+const BACKEND_URL = 'https://grading.design.pages.academy/v0/escape-room/';
 const REQUEST_TIMEOUT = 5000;
 
 const statusErrors = new Set([StatusCodes.BAD_REQUEST, StatusCodes.NOT_FOUND]);
